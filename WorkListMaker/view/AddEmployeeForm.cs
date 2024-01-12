@@ -21,19 +21,33 @@ namespace WorkListMaker.view
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			MyDbContext employeeContext = new MyDbContext();
-			employeeContext.Employees.Add(new model.Employee
+			using (MyDbContext myDbContext = new MyDbContext())
 			{
-				Name = textBoxAdSoyad.Text,
-				Id = 1,
-				MaxDailyWorkingHours = Convert.ToInt32(textBoxMaxCalismaSaati.Text),
-				MaxWorkingHoursPerMonth = Convert.ToInt32(textBoxAylıkMaxCalismaSaati.Text),
-				MinDailyWorkingHours = Convert.ToInt32(textBoxMinCalismaSaati.Text),
-				SpecialStatusCode = Convert.ToInt32(textBoxOzelDurumKodu.Text),
-				TcId = textBoxTcNo.Text
-			});
+				myDbContext.Employees.Add(new model.Employee
+				{
+					Name = textBoxAdSoyad.Text,
+					MaxDailyWorkingHours = Convert.ToInt32(textBoxMaxCalismaSaati.Text),
+					MaxWorkingHoursPerMonth = Convert.ToInt32(textBoxAylıkMaxCalismaSaati.Text),
+					MinDailyWorkingHours = Convert.ToInt32(textBoxMinCalismaSaati.Text),
+					SpecialStatusCode = Convert.ToInt32(textBoxOzelDurumKodu.Text),
+					TcId = textBoxTcNo.Text
+				});
 
-			employeeContext.SaveChanges();
+				myDbContext.SaveChanges();
+			}
+		}
+
+		private void AddEmployeeForm_Load(object sender, EventArgs e)
+		{
+			using(MyDbContext myDbContext = new MyDbContext())
+			{
+				var allPolyclinicAreas = myDbContext.PolyclinicAreas.ToList();
+				foreach (var area in allPolyclinicAreas)
+				{
+					comboBoxCalismaAlanlari.Items.Add(area.Name);
+				}
+			}
+			
 		}
 	}
 }

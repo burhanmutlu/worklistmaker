@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WorkListMaker.model;
 using WorkListMaker.model.Context;
+using WorkListMaker.utils;
 using WorkListMaker.view;
 
 namespace WorkListMaker
@@ -26,15 +28,23 @@ namespace WorkListMaker
 
 		}
 
-		private void button1_Click(object sender, EventArgs e)
-		{
-			
-		}
-
 		private void button2_Click(object sender, EventArgs e)
 		{
 			AddEmployeeForm addEmployeeForm = new AddEmployeeForm();
 			addEmployeeForm.Show();
 		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			AddPolyclinicAreaForm addPolyclinicAreaForm = new AddPolyclinicAreaForm();
+			addPolyclinicAreaForm.Show();
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			FileUtils fileUtils = new FileUtils();
+			fileUtils.createExcelFile();
+		}
+
 	}
 }
