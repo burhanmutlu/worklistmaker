@@ -19,7 +19,6 @@ namespace WorkListMaker.utils
 			
 		}
 
-
 		private string createFileName()
 		{
 			string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -49,7 +48,6 @@ namespace WorkListMaker.utils
 
 		private void initSheet()
 		{
-			List<string> cells = new List<string>();
 			aligmentCenter();
 			Sheet.Cells["A1"].Value = "No";
 			Sheet.Cells["B1"].Value = "TC No";
